@@ -1,7 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa Gerenciador de Campeonatos de Futebol - Versão 1.0
+ * Desenvolvido para a disciplina de Gerência de Projeto de Software, do período
+ * 2016.1, do curso de Engenharia de Software da Universidade Federal de Goiás
+ * Desenvolvedor do software: Augusto César da Fonseca Falcão - Matrícula: 140614
+ * Equipe do projeto: Augusto César, Igor Queiroz, Márcio Flores, Guilherme Alves,
+ * Erik Raphael e Vinícius
+ * Cliente: Prof.ª Mª Adriana
+
  */
 package myconnection;
 
@@ -11,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author JoséAugusto
+ * @author Augusto César da Fonseca Falcão
  */
 public class EditarNovoCampeonato extends javax.swing.JFrame {
 
@@ -124,23 +129,26 @@ public class EditarNovoCampeonato extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-                // TODO add your handling code here:
+         //instancia conexão
          Connection con = MyConnection.getMyConnection();
         try{
+        //variáveis de armazenamento de valores string     
         String value1 = jTextField1.getText();
         String value2 = jTextField2.getText();
-        //Boolean value3 = checkbox1.
         
+        //intrução sql
         String query = "INSERT INTO tab_camp(CAMP_NOME, CAMP_QUANT_TIME)"+"VALUES (?, ?)";
         
+        //armazenamento
         PreparedStatement stat = con.prepareStatement(query);
         stat.setString(1, value1);
         stat.setString(2, value2);
         
         stat.execute();
         
-        
+        //criação bem sucedida
         JOptionPane.showMessageDialog(null, "Campeonato criado!","Novo Camepeonato", 1);
+        
         }catch(Exception e) {
            System.err.println("Erro");
            System.err.println(e.getMessage());

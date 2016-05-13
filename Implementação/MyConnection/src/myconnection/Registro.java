@@ -1,7 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa Gerenciador de Campeonatos de Futebol - Versão 1.0
+ * Desenvolvido para a disciplina de Gerência de Projeto de Software, do período
+ * 2016.1, do curso de Engenharia de Software da Universidade Federal de Goiás
+ * Desenvolvedor do software: Augusto César da Fonseca Falcão - Matrícula: 140614
+ * Equipe do projeto: Augusto César, Igor Queiroz, Márcio Flores, Guilherme Alves,
+ * Erik Raphael e Vinícius
+ * Cliente: Prof.ª Mª Adriana
+
  */
 package myconnection;
 
@@ -15,7 +20,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author JoséAugusto
+ * @author Augusto César da Fonseca Falcão
  */
 public class Registro extends javax.swing.JFrame {
 
@@ -144,14 +149,18 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_textField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //instancia a conexão
         Connection con = MyConnection.getMyConnection();
-        try{
+        try{ 
+        //variáveis de armazenamento de string    
         String value1 = textField1.getText();
         String value2 = new String(jPasswordField1.getPassword());
         String value3 = new String(jPasswordField2.getPassword());
         
+        //instrução sql
         String query = "INSERT INTO tab_login(LOGIN_USER, LOGIN_SENHA)"+"VALUES (?, ?)";
         
+        //armazenamento
         PreparedStatement stat = con.prepareStatement(query);
         stat.setString(1, value1);
         stat.setString(2, value2);

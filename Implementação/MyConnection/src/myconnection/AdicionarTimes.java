@@ -1,14 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *Programa Gerenciador de Campeonatos de Futebol - Versão 1.0
+ * Desenvolvido para a disciplina de Gerência de Projeto de Software, do período
+ * 2016.1, do curso de Engenharia de Software da Universidade Federal de Goiás
+ * Desenvolvedor do software: Augusto César da Fonseca Falcão - Matrícula: 140614
+ * Equipe do projeto: Augusto César, Igor Queiroz, Márcio Flores, Guilherme Alves,
+ * Erik Raphael e Vinícius
+ * Cliente: Prof.ª Mª Adriana
  */
 
 package myconnection;
 
 /**
  *
- * @author augusto
+ * @author Augusto César da Fonseca Falcão
  */
 public class AdicionarTimes extends javax.swing.JFrame {
 

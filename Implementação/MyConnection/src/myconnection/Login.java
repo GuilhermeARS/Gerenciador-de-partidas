@@ -170,19 +170,28 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //instancia conexão
         Connection con = MyConnection.getMyConnection();
-        //  Statement stat;
+        
+        //variáveis de armazenamento de string
         String value1 = jTextField1.getText();
         String value2 = new String(jPasswordField1.getPassword());
+        //resultado de busca
         ResultSet rs;
         try {
+            //instrução sql
             String SQL = "SELECT * FROM tab_login where LOGIN_USER=? && LOGIN_SENHA=?";
             PreparedStatement stat = con.prepareStatement(SQL);
+            //armazenamento
             stat.setString(1, value1);
             stat.setString(2, value2);
+            //teste
             System.out.println(value2);
             System.out.println(SQL);
+            //reusultado
             rs = stat.executeQuery();
+            
+            //teste 2
             if (rs.first()) {
                 System.out.println("Encontrou no banco");
                  new NovoCampeonato().setVisible(true);
