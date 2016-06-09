@@ -10,8 +10,10 @@
  */
 package myconnection;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,11 +40,13 @@ public class EditarNovoCampeonato extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        checkbox1 = new java.awt.Checkbox();
         button1 = new java.awt.Button();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,53 +57,70 @@ public class EditarNovoCampeonato extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Nome do Campeonato:");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Número de Times:");
-
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
-        checkbox1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        checkbox1.setLabel("2 Turnos");
-
         button1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        button1.setLabel("Criar");
+        button1.setLabel("Continuar");
         button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button1ActionPerformed(evt);
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Número de Times(Máx: 20):");
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        jTextField2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTextField2PropertyChange(evt);
+            }
+        });
+
+        jButton2.setText("Adicionar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.setToolTipText("");
+        jScrollPane1.setViewportView(jList1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2)))))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(119, 119, 119))
+                        .addGap(79, 79, 79)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField2)
+                            .addComponent(jTextField1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,15 +131,18 @@ public class EditarNovoCampeonato extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -134,15 +158,15 @@ public class EditarNovoCampeonato extends javax.swing.JFrame {
         try{
         //variáveis de armazenamento de valores string     
         String value1 = jTextField1.getText();
-        String value2 = jTextField2.getText();
+       
         
         //intrução sql
-        String query = "INSERT INTO tab_camp(CAMP_NOME, CAMP_QUANT_TIME)"+"VALUES (?, ?)";
+        String query = "INSERT INTO tab_camp(CAMP_NOME)"+"VALUES (?)";
         
         //armazenamento
         PreparedStatement stat = con.prepareStatement(query);
         stat.setString(1, value1);
-        stat.setString(2, value2);
+        
         
         stat.execute();
         
@@ -153,8 +177,322 @@ public class EditarNovoCampeonato extends javax.swing.JFrame {
            System.err.println("Erro");
            System.err.println(e.getMessage());
         }    
-        new AdicionarTimes().setVisible(true);
+       
     }//GEN-LAST:event_button1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTextField2PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2PropertyChange
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //Tipo lista para manipular a adição de itens em tempo de execução
+        DefaultListModel TimeList = new DefaultListModel();
+        for(int i = 0; i < jList1.getModel().getSize(); i++) {
+            TimeList.addElement(jList1.getModel().getElementAt(i));
+        }
+        //O usuário informa o número de itens/times que a lista/campeonato terá
+        String value1 = jTextField2.getText();
+        //O switch-case fará a verificação e adição de times
+        switch(value1){
+
+            case "1":
+            JOptionPane.showMessageDialog(null, "Precisa haver pelo menos 3 times para montar um campeonato!","Novo Camepeonato", 1);
+            break;
+
+            case "2":
+            JOptionPane.showMessageDialog(null, "Precisa haver pelo menos 3 times para montar um campeonato!","Novo Camepeonato", 1);
+            break;
+
+            case "3":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            jList1.setModel(TimeList);
+            break;
+
+            case "4":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            jList1.setModel(TimeList);
+            break;
+
+            case "5":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            jList1.setModel(TimeList);
+            break;
+
+            case "6":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            jList1.setModel(TimeList);
+            break;
+
+            case "7":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            TimeList.addElement("Time7");
+            jList1.setModel(TimeList);
+            break;
+
+            case "8":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            TimeList.addElement("Time7");
+            TimeList.addElement("Time8");
+            jList1.setModel(TimeList);
+            break;
+
+            case "9":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            TimeList.addElement("Time7");
+            TimeList.addElement("Time8");
+            TimeList.addElement("Time9");
+            jList1.setModel(TimeList);
+            break;
+
+            case "10":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            TimeList.addElement("Time7");
+            TimeList.addElement("Time8");
+            TimeList.addElement("Time9");
+            TimeList.addElement("Time10");
+            jList1.setModel(TimeList);
+            break;
+
+            case "11":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            TimeList.addElement("Time7");
+            TimeList.addElement("Time8");
+            TimeList.addElement("Time9");
+            TimeList.addElement("Time10");
+            TimeList.addElement("Time11");
+            jList1.setModel(TimeList);
+            break;
+
+            case "12":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            TimeList.addElement("Time7");
+            TimeList.addElement("Time8");
+            TimeList.addElement("Time9");
+            TimeList.addElement("Time10");
+            TimeList.addElement("Time11");
+            TimeList.addElement("Time12");
+            jList1.setModel(TimeList);
+            break;
+
+            case "13":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            TimeList.addElement("Time7");
+            TimeList.addElement("Time8");
+            TimeList.addElement("Time9");
+            TimeList.addElement("Time10");
+            TimeList.addElement("Time11");
+            TimeList.addElement("Time12");
+            TimeList.addElement("Time13");
+            jList1.setModel(TimeList);
+            break;
+                
+            case "14":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            TimeList.addElement("Time7");
+            TimeList.addElement("Time8");
+            TimeList.addElement("Time9");
+            TimeList.addElement("Time10");
+            TimeList.addElement("Time11");
+            TimeList.addElement("Time12");
+            TimeList.addElement("Time13");
+            TimeList.addElement("Time14");
+            jList1.setModel(TimeList);
+            break;
+                  
+            case "15":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            TimeList.addElement("Time7");
+            TimeList.addElement("Time8");
+            TimeList.addElement("Time9");
+            TimeList.addElement("Time10");
+            TimeList.addElement("Time11");
+            TimeList.addElement("Time12");
+            TimeList.addElement("Time13");
+            TimeList.addElement("Time14");
+            TimeList.addElement("Time15");
+            jList1.setModel(TimeList);
+            break;    
+                
+            case "16":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            TimeList.addElement("Time7");
+            TimeList.addElement("Time8");
+            TimeList.addElement("Time9");
+            TimeList.addElement("Time10");
+            TimeList.addElement("Time11");
+            TimeList.addElement("Time12");
+            TimeList.addElement("Time13");
+            TimeList.addElement("Time14");
+            TimeList.addElement("Time15");
+            TimeList.addElement("Time16");
+            jList1.setModel(TimeList);
+            break;    
+                
+            case "17":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            TimeList.addElement("Time7");
+            TimeList.addElement("Time8");
+            TimeList.addElement("Time9");
+            TimeList.addElement("Time10");
+            TimeList.addElement("Time11");
+            TimeList.addElement("Time12");
+            TimeList.addElement("Time13");
+            TimeList.addElement("Time14");
+            TimeList.addElement("Time15");
+            TimeList.addElement("Time16");
+            TimeList.addElement("Time17");
+            jList1.setModel(TimeList);
+            break;        
+             
+            case "18":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            TimeList.addElement("Time7");
+            TimeList.addElement("Time8");
+            TimeList.addElement("Time9");
+            TimeList.addElement("Time10");
+            TimeList.addElement("Time11");
+            TimeList.addElement("Time12");
+            TimeList.addElement("Time13");
+            TimeList.addElement("Time14");
+            TimeList.addElement("Time15");
+            TimeList.addElement("Time16");
+            TimeList.addElement("Time17");
+            TimeList.addElement("Time18");
+            jList1.setModel(TimeList);
+            break;    
+                
+            case "19":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            TimeList.addElement("Time7");
+            TimeList.addElement("Time8");
+            TimeList.addElement("Time9");
+            TimeList.addElement("Time10");
+            TimeList.addElement("Time11");
+            TimeList.addElement("Time12");
+            TimeList.addElement("Time13");
+            TimeList.addElement("Time14");
+            TimeList.addElement("Time15");
+            TimeList.addElement("Time16");
+            TimeList.addElement("Time17");
+            TimeList.addElement("Time18");
+            TimeList.addElement("Time19");
+            jList1.setModel(TimeList);
+            break;    
+            
+            case "20":
+            TimeList.addElement("Time1");
+            TimeList.addElement("Time2");
+            TimeList.addElement("Time3");
+            TimeList.addElement("Time4");
+            TimeList.addElement("Time5");
+            TimeList.addElement("Time6");
+            TimeList.addElement("Time7");
+            TimeList.addElement("Time8");
+            TimeList.addElement("Time9");
+            TimeList.addElement("Time10");
+            TimeList.addElement("Time11");
+            TimeList.addElement("Time12");
+            TimeList.addElement("Time13");
+            TimeList.addElement("Time14");
+            TimeList.addElement("Time15");
+            TimeList.addElement("Time16");
+            TimeList.addElement("Time17");
+            TimeList.addElement("Time18");
+            TimeList.addElement("Time19");
+            TimeList.addElement("Time20");
+            jList1.setModel(TimeList);
+            break; 
+                 
+            default:    
+            JOptionPane.showMessageDialog(null, "O número máximo de times por campeonato é 20!","Novo Camepeonato", 1); 
+        }
+
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,10 +531,12 @@ public class EditarNovoCampeonato extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
-    private java.awt.Checkbox checkbox1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JList jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
